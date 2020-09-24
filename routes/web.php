@@ -27,8 +27,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified'], 'namespace' => '\App
     })->name('dashboard');
 
     Route::group(['middleware' => [], 'namespace' => 'Panel'], function() {
-        Route::resource('/roles', RoleController::class);
-        Route::resource('/permissions', RoleController::class);
+        Route::resource('/roles', RoleController::class)->except(['show']);
+        Route::resource('/permissions', RoleController::class)->except(['show']);
         Route::resource('/test', RoleController::class);
     });
 });

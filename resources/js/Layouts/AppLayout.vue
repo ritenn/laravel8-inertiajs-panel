@@ -127,8 +127,9 @@
                     <div class="inline-flex self-center">
                         <slot name="header"></slot>
                     </div>
-                    <button class="bg-gray-700 hover:bg-gray-400 font-bold text-white py-2 px-4 rounded inline-flex items-center"
-                            @click="redirectBack" >
+
+                    <button v-if="!isDashboard" class="bg-gray-700 hover:bg-gray-400 font-bold text-white py-2 px-4 rounded inline-flex items-center"
+                            @click="redirectBack">
                         <span class="material-icons">arrow_back</span>
                         Return back
                     </button>
@@ -185,6 +186,9 @@
         computed: {
             path() {
                 return window.location.pathname
+            },
+            isDashboard() {
+                return route().current() === 'dashboard';
             }
         }
     }

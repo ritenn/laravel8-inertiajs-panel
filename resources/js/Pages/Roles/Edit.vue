@@ -2,17 +2,17 @@
 <app-layout>
     <template #header>
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Create role
+            Update role
         </h2>
     </template>
     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-    <jet-form-section @submitted="createRole">
+    <jet-form-section @submitted="updateRole">
         <template #title>
             Role Information
         </template>
 
         <template #description>
-            Set new role data.
+            Update role data.
         </template>
 
         <template #form>
@@ -33,11 +33,11 @@
         <template #actions>
 
             <jet-action-message :on="form.recentlySuccessful" class="mr-3">
-                {{ hasErrors ? 'Failed - fix errors' : 'Created.' }}
+                {{ hasErrors ? 'Failed - fix errors' : 'Updated.' }}
             </jet-action-message>
 
             <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Create
+                Update
             </jet-button>
         </template>
     </jet-form-section>
@@ -55,7 +55,7 @@ import JetLabel from "../../Jetstream/Label";
 import JetSecondaryButton from "../../Jetstream/SecondaryButton";
 
 export default {
-    props: ['name', 'display_name', 'errors'],
+    props: ['role', 'errors'],
 
     components: {
         AppLayout,
@@ -71,17 +71,17 @@ export default {
       return {
           form: this.$inertia.form({
               '_method': 'POST',
-              name: new String,
-              display_name: new String
+              name: this.role.name,
+              display_name: this.role.display_name
           }, {
-              bag: 'createRole',
+              bag: 'updateRole',
               resetOnSuccess: false,
           }),
       }
     },
     methods: {
-        createRole() {
-            this.form.post('/roles', {
+        updateRole() {
+            this.form.put('/roles/' + this.role.id, {
                 preserveScroll: true
             });
         }

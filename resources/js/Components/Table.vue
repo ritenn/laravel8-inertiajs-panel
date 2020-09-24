@@ -6,10 +6,10 @@
 
                 <button v-if="actions.find( x => x === 'add')"
                         class="mb-4 bg-blue-500 hover:bg-gray-400 font-bold text-white py-2 px-4 rounded inline-flex items-center"
-                        @click="$inertia.visit(create_url)" >
+                        @click="$inertia.replace(create_url)" >
 
                     <span class="material-icons">add</span>
-                    Create new
+                    {{ actionsDetails.add.label }}
                 </button>
             </div>
             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -32,12 +32,12 @@
                         <!--Actions-->
                         <td v-if="actions.length" class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
                             <template v-for="action in actions">
-                                <a v-if="action !== 'add'"
-                                   href="/"
+                                <button v-if="action !== 'add'"
+                                   @click="execAction(element.id, action)"
                                    :class="[actionsDetails[action].color]" class="px-2 hover:text-indigo-900"
                                 >
                                     {{ actionsDetails[action].label }}
-                                </a>
+                                </button>
                             </template>
                         </td>
                     </tr>
@@ -65,6 +65,14 @@ export default {
             type: String,
             default: route(route().current()).url() + '/create'
         },
+        edit_url: {
+            type: String,
+            default: route(route().current()).url() + '/:id/edit'
+        },
+        delete_url: {
+            type: String,
+            default: route(route().current()).url() + '/:id'
+        },
         actions: {
             type: Array,
             default: () => ['add', 'edit', 'delete']
@@ -77,19 +85,40 @@ export default {
         return {
             actionsDetails: {
                 add: {
-                    label: 'Add',
-                    color: 'text-blue-500'
+                    label: 'Create new',
+                    color: 'text-blue-500',
+                    url: this.create_url
                 },
                 edit: {
                     label: 'Edit',
-                    color: 'text-blue-500'
+                    color: 'text-blue-500',
+                    url: this.edit_url
                 },
                 delete: {
                     label: 'Delete',
-                    color: 'text-red-700'
+                    color: 'text-red-700',
+                    url: this.delete_url
                 }
 
             }
+        }
+    },
+    methods: {
+        passIdActionGetRoute(id, action)
+        {
+            return this.actionsDetails[action].url.replace(':id', id);
+        },
+        execAction(id, action)
+        {
+            this.[action + 'Data'](id, action);
+        },
+        editData(id, action)
+        {
+            this.$inertia.visit(this.passIdActionGetRoute(id, action))
+        },
+        deleteData(id, action)
+        {
+            this.$inertia.delete(this.passIdActionGetRoute(id, action))
         }
     }
 }

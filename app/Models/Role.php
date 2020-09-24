@@ -11,6 +11,10 @@ class Role extends BaseModel
 
     protected $guarded = ['id'];
 
+    public static function firstOrCreate(array $validated)
+    {
+    }
+
     public function users()
     {
         return $this->belongsToMany(User::class, 'role_user');
