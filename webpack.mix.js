@@ -16,8 +16,10 @@ mix.copyDirectory('node_modules/material-design-icons-iconfont/dist/fonts', 'pub
 
 mix.webpackConfig({
     resolve: {
+        extensions: ['.js', '.vue', '.json'],
         alias: {
             ziggy: path.resolve('vendor/tightenco/ziggy/src/js/route.js'),
+            '@': path.resolve('resources/js')
         },
     },
 });

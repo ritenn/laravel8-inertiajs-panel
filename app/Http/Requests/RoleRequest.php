@@ -5,6 +5,8 @@ namespace App\Http\Requests;
 
 class RoleRequest extends BaseRequest
 {
+    protected $errorBag = 'runAction';
+
     /**
      * Get the validation rules that apply to the request.
      *
