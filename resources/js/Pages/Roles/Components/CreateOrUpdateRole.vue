@@ -17,7 +17,7 @@
             <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" autocomplete="name" />
             <jet-input-error :message="form.error('name')" class="mt-2" />
         </div>
-        <-- Display name -->
+        <!-- Display name -->
         <div class="col-span-6 sm:col-span-4">
             <jet-label for="display_name" value="Display name" />
             <jet-input id="display_name" type="text" class="mt-1 block w-full" v-model="form.display_name" autocomplete="display_name" />

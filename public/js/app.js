@@ -2100,7 +2100,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2114,15 +2113,15 @@ __webpack_require__.r(__webpack_exports__);
     },
     create_url: {
       type: String,
-      "default": route(route().current()).url() + '/create'
+      "default": ''
     },
     edit_url: {
       type: String,
-      "default": route(route().current()).url() + '/:id/edit'
+      "default": ''
     },
     delete_url: {
       type: String,
-      "default": route(route().current()).url() + '/:id'
+      "default": ''
     },
     actions: {
       type: Array,
@@ -2140,17 +2139,17 @@ __webpack_require__.r(__webpack_exports__);
         add: {
           label: 'Create new',
           color: 'text-blue-500',
-          url: this.create_url
+          url: this.create_url === '' ? route(route().current()).url() + '/create' : this.create_url
         },
         edit: {
           label: 'Edit',
           color: 'text-blue-500',
-          url: this.edit_url
+          url: this.edit_url === '' ? route(route().current()).url() + '/:id/edit' : this.edit_url
         },
         "delete": {
           label: 'Delete',
           color: 'text-red-700',
-          url: this.delete_url
+          url: this.delete_url === '' ? route(route().current()).url() + '/:id' : this.delete_url
         }
       }
     };
@@ -3235,7 +3234,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -3268,7 +3266,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     redirectBack: function redirectBack() {
-      window.history.back();
+      this.$inertia.visit(this.$page.data.prev);
     }
   },
   computed: {
@@ -25689,7 +25687,7 @@ var render = function() {
                       "mb-4 bg-blue-500 hover:bg-gray-400 font-bold text-white py-2 px-4 rounded inline-flex items-center",
                     on: {
                       click: function($event) {
-                        return _vm.$inertia.replace(_vm.create_url)
+                        return _vm.$inertia.replace(_vm.actionsDetails.add.url)
                       }
                     }
                   },
@@ -29971,7 +29969,7 @@ var render = function() {
                 ],
                 1
               ),
-              _vm._v("\n        <-- Display name -->\n        "),
+              _vm._v(" "),
               _c(
                 "div",
                 { staticClass: "col-span-6 sm:col-span-4" },

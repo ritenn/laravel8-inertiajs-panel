@@ -127,7 +127,6 @@
                     <div class="inline-flex self-center">
                         <slot name="header"></slot>
                     </div>
-
                     <button v-if="!isDashboard" class="bg-gray-700 hover:bg-gray-400 font-bold text-white py-2 px-4 rounded inline-flex items-center"
                             @click="redirectBack">
                         <span class="material-icons">arrow_back</span>
@@ -179,7 +178,7 @@
                 })
             },
             redirectBack() {
-                window.history.back();
+                this.$inertia.visit(this.$page.data.prev);
             }
 
         },

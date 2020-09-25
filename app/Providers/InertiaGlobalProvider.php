@@ -24,9 +24,11 @@ class InertiaGlobalProvider extends ServiceProvider
      */
     public function boot()
     {
+
         Inertia::share('data', function () {
             return [
-                'menu' => collect(config('menu'))->toJson()
+                'menu' => collect(config('menu'))->toJson(),
+                'prev' => url()->previous()
             ];
         });
     }

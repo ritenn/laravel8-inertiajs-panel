@@ -3,10 +3,9 @@
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div class="w-full text-right">
-
                 <button v-if="actions.find( x => x === 'add')"
                         class="mb-4 bg-blue-500 hover:bg-gray-400 font-bold text-white py-2 px-4 rounded inline-flex items-center"
-                        @click="$inertia.replace(create_url)" >
+                        @click="$inertia.replace(actionsDetails.add.url)" >
 
                     <span class="material-icons">add</span>
                     {{ actionsDetails.add.label }}
@@ -63,15 +62,15 @@ export default {
         },
         create_url: {
             type: String,
-            default: route(route().current()).url() + '/create'
+            default: ''
         },
         edit_url: {
             type: String,
-            default: route(route().current()).url() + '/:id/edit'
+            default: ''
         },
         delete_url: {
             type: String,
-            default: route(route().current()).url() + '/:id'
+            default: ''
         },
         actions: {
             type: Array,
@@ -87,17 +86,17 @@ export default {
                 add: {
                     label: 'Create new',
                     color: 'text-blue-500',
-                    url: this.create_url
+                    url: this.create_url === '' ? route(route().current()).url() + '/create' : this.create_url
                 },
                 edit: {
                     label: 'Edit',
                     color: 'text-blue-500',
-                    url: this.edit_url
+                    url: this.edit_url === '' ? route(route().current()).url() + '/:id/edit' : this.edit_url
                 },
                 delete: {
                     label: 'Delete',
                     color: 'text-red-700',
-                    url: this.delete_url
+                    url: this.delete_url === '' ? route(route().current()).url() + '/:id' : this.delete_url
                 }
 
             }
