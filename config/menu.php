@@ -4,7 +4,7 @@ return [
     [
         'icon' => 'home',
         'label' => 'Dashboard',
-        'routeName' => 'dashboard',
+        'routeName' => 'dashboard.index',
         'child' => []
     ],
     [

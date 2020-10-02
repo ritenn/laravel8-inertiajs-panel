@@ -61,6 +61,10 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-
+    /**
+     * Eager load
+     * @var string[]
+     */
+    protected $with = ['getRole.permissions'];
 
 }

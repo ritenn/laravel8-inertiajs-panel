@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Role;
+use App\Models\Permission;
 use Illuminate\Database\Seeder;
 
-class RoleSeeder extends Seeder
+class PermissionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +14,8 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        collect(config('roles'))->each(function ($role) {
-            Role::firstOrCreate($role);
+        collect(config('permissions'))->each(function ($permission) {
+           Permission::firstOrCreate($permission);
         });
     }
 }

@@ -20,15 +20,15 @@ Route::get('/', function () {
 Route::get('/test', ['uses' => "\App\Http\Controllers\TestController@index"]);
 
 
-Route::group(['middleware' => ['auth:sanctum', 'verified'], 'namespace' => '\App\Http\Controllers'], function() {
+Route::group(['middleware' => ['auth:sanctum', 'verified', 'dashboard.permissions'], 'namespace' => '\App\Http\Controllers'], function() {
 
     Route::get('/dashboard', function () {
         return Inertia\Inertia::render('Dashboard');
-    })->name('dashboard');
+    })->name('dashboard.index');
 
     Route::group(['middleware' => [], 'namespace' => 'Panel'], function() {
         Route::resource('/roles', RoleController::class)->except(['show']);
-        Route::resource('/permissions', RoleController::class)->except(['show']);
+        Route::resource('/permissions', PermissionController::class)->except(['show']);
         Route::resource('/test', RoleController::class);
     });
 });
