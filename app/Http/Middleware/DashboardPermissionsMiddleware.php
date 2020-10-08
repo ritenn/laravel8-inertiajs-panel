@@ -50,9 +50,9 @@ class DashboardPermissionsMiddleware
         /**
          * Redirect user without permissions to dashboard, if he is allowed.
          */
-        if (auth()->user()->can('viewAny', [Role::class, 'dashboard.index']))
+        if (auth()->user()->can('viewAny', [Role::class, 'panel.dashboard.index']))
         {
-            return redirect()->route('dashboard.index');
+            return redirect()->route('panel.dashboard.index');
         }
 
         /**

@@ -4,7 +4,7 @@ return [
     [
         'icon' => 'home',
         'label' => 'Dashboard',
-        'routeName' => 'dashboard.index',
+        'routeName' => 'panel.dashboard.index',
         'child' => []
     ],
     [
@@ -15,13 +15,13 @@ return [
             [
                 'icon' => 'gavel',
                 'label' => 'Roles',
-                'routeName' => 'roles.index',
+                'routeName' => 'panel.roles.index',
                 'child' => []
             ],
             [
                 'icon' => 'vpn_key',
                 'label' => 'Permissions',
-                'routeName' => 'permissions.index',
+                'routeName' => 'panel.permissions.index',
                 'child' => []
             ]
         ]

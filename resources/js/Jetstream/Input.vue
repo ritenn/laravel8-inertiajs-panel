@@ -10,9 +10,6 @@
                 this.$refs.input.focus()
             }
         },
-        created() {
-            // console.log(this.$page.errors[this.$attrs.id]);
-        },
         computed: {
             hasErrors() {
                 return Boolean(this.$page.errors[this.$attrs.id]);

@@ -20,7 +20,7 @@ Route::get('/', function () {
 Route::get('/test', ['uses' => "\App\Http\Controllers\TestController@index"]);
 
 
-Route::group(['middleware' => ['auth:sanctum', 'verified', 'dashboard.permissions'], 'namespace' => '\App\Http\Controllers'], function() {
+Route::group(['as' => 'panel.', 'middleware' => ['auth:sanctum', 'verified', 'dashboard.permissions'], 'namespace' => '\App\Http\Controllers'], function() {
 
     Route::get('/dashboard', function () {
         return Inertia\Inertia::render('Dashboard');
